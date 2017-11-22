@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer.Core", "src\FaceRecognizer.Core\FaceRecognizer.Core.csproj", "{B03518BC-FE0D-4F7B-AF59-EEA867718B09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceRecognizer.Core", "src\FaceRecognizer.Core\FaceRecognizer.Core.csproj", "{B03518BC-FE0D-4F7B-AF59-EEA867718B09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer.Core.Tests", "test\FaceRecognizer.Core.Tests\FaceRecognizer.Core.Tests.csproj", "{725F4DD5-8A8A-40C7-9645-8BA1150D009E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceRecognizer.Core.Tests", "test\FaceRecognizer.Core.Tests\FaceRecognizer.Core.Tests.csproj", "{725F4DD5-8A8A-40C7-9645-8BA1150D009E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer.Web", "src\FaceRecognizer.Web\FaceRecognizer.Web.csproj", "{C1F47895-0898-44CD-BD66-783C141C1922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceRecognizer.Web", "src\FaceRecognizer.Web\FaceRecognizer.Web.csproj", "{C1F47895-0898-44CD-BD66-783C141C1922}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{0CC4533B-AF37-454B-8C6C-882FE5728CD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{882F5920-CAFE-4CB4-9952-EC9A92FB2D00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,8 +36,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{725F4DD5-8A8A-40C7-9645-8BA1150D009E} = {CDE46A3B-8FA7-42A7-83FA-58CEC53B1FD7}
-		{C1F47895-0898-44CD-BD66-783C141C1922} = {047DA82F-AA84-476F-AD69-6EC94CEC7593}
+		{725F4DD5-8A8A-40C7-9645-8BA1150D009E} = {882F5920-CAFE-4CB4-9952-EC9A92FB2D00}
+		{C1F47895-0898-44CD-BD66-783C141C1922} = {0CC4533B-AF37-454B-8C6C-882FE5728CD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89B9AFDB-B2EC-460C-BBD2-2AEEB631D47D}
