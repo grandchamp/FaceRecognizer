@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+ psql:
+    image: postgres:latest
+    ports:
+       - 5432:5432
+    environment:
+       POSTGRES_USER: facerecognizer
+       POSTGRES_PASSWORD: 123456
+       POSTGRES_DB: facedb
+    volumes:
+       - pgdata:/var/lib/postgresql/data
+       - "./psql/1-createhangfiredb.sql:/docker-entrypoint-initdb.d/1-createhangfiredb.sql"
+    networks:
+       - facenetwork
+       
+ rabbitmq:
+  image: "rabbitmq:3-management"
+  hostname: "facerecognizerbus"
+  environment:
+    RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+    RABBITMQ_DEFAULT_USER: "rabbitmq"
+    RABBITMQ_DEFAULT_PASS: "123456"
+    RABBITMQ_DEFAULT_VHOST: "/"
+  ports:
+    - "15672:15672"
+    - "5672:5672"
+  labels:
+    NAME: "rabbitmq1"
+  volumes:
+    - "./rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins"
+  networks:
+    - facenetwork  
+    
+ # api:
+    # build:
+       # context: ./api
+       # dockerfile: Dockerfile
+    # networks:
+      # - facenetwork
+       
+ # web:
+    # build:
+       # context: ./web
+       # dockerfile: Dockerfile
+    # networks:
+      # - facenetwork
+       
+volumes:
+  pgdata:
+  
+networks:
+  facenetwork:
+    driver: bridge

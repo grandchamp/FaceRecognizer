@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Marten" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FaceRecognizer.Core\FaceRecognizer.Core.csproj" />
+    <ProjectReference Include="..\FaceRecognizer.CrossCutting\FaceRecognizer.CrossCutting.csproj" />
+  </ItemGroup>
+
+</Project>

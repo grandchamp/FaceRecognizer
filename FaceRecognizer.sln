@@ -13,6 +13,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{0CC4533B-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{882F5920-CAFE-4CB4-9952-EC9A92FB2D00}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceRecognizer.Data", "src\FaceRecognizer.Data\FaceRecognizer.Data.csproj", "{B59F2D1C-CB9D-4B5F-8A8D-C4025E6D2B5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaceRecognizer.API", "src\FaceRecognizer.API\FaceRecognizer.API.csproj", "{722BD00A-5EB8-45FC-80C8-D31568CD20F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer.Bus.RabbitMQ", "src\FaceRecognizer.Bus.RabbitMQ\FaceRecognizer.Bus.RabbitMQ.csproj", "{4045B8C2-1AC8-4811-BAF0-0103F9711814}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer.BusHandler", "src\FaceRecognizer.BusHandler\FaceRecognizer.BusHandler.csproj", "{4854416C-0CE7-4891-96DC-EDC6A40A102E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognizer.CrossCutting", "src\FaceRecognizer.CrossCutting\FaceRecognizer.CrossCutting.csproj", "{143A61ED-3C65-4C45-8C0C-BD4F71917BBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +41,26 @@ Global
 		{C1F47895-0898-44CD-BD66-783C141C1922}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1F47895-0898-44CD-BD66-783C141C1922}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1F47895-0898-44CD-BD66-783C141C1922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B59F2D1C-CB9D-4B5F-8A8D-C4025E6D2B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59F2D1C-CB9D-4B5F-8A8D-C4025E6D2B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59F2D1C-CB9D-4B5F-8A8D-C4025E6D2B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59F2D1C-CB9D-4B5F-8A8D-C4025E6D2B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722BD00A-5EB8-45FC-80C8-D31568CD20F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722BD00A-5EB8-45FC-80C8-D31568CD20F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722BD00A-5EB8-45FC-80C8-D31568CD20F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722BD00A-5EB8-45FC-80C8-D31568CD20F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4045B8C2-1AC8-4811-BAF0-0103F9711814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4045B8C2-1AC8-4811-BAF0-0103F9711814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4045B8C2-1AC8-4811-BAF0-0103F9711814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4045B8C2-1AC8-4811-BAF0-0103F9711814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4854416C-0CE7-4891-96DC-EDC6A40A102E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4854416C-0CE7-4891-96DC-EDC6A40A102E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4854416C-0CE7-4891-96DC-EDC6A40A102E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4854416C-0CE7-4891-96DC-EDC6A40A102E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143A61ED-3C65-4C45-8C0C-BD4F71917BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143A61ED-3C65-4C45-8C0C-BD4F71917BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143A61ED-3C65-4C45-8C0C-BD4F71917BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143A61ED-3C65-4C45-8C0C-BD4F71917BBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +68,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{725F4DD5-8A8A-40C7-9645-8BA1150D009E} = {882F5920-CAFE-4CB4-9952-EC9A92FB2D00}
 		{C1F47895-0898-44CD-BD66-783C141C1922} = {0CC4533B-AF37-454B-8C6C-882FE5728CD7}
+		{722BD00A-5EB8-45FC-80C8-D31568CD20F8} = {0CC4533B-AF37-454B-8C6C-882FE5728CD7}
+		{4854416C-0CE7-4891-96DC-EDC6A40A102E} = {0CC4533B-AF37-454B-8C6C-882FE5728CD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89B9AFDB-B2EC-460C-BBD2-2AEEB631D47D}
