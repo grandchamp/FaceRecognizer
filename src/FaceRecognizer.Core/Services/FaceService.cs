@@ -35,7 +35,7 @@ namespace FaceRecognizer.Core.Services
             _faceRepository = faceRepository;
             _cascadeClassifier = new CascadeClassifier(Path.Combine(_hostingEnvironment.ContentRootPath ?? _hostingEnvironment.WebRootPath,
                                                        _emguCvConfiguration.Value.FaceRecognitionBaseDataFile));
-            _faceRecognizer = new LBPHFaceRecognizer(1, 8, 8, 8, 130);
+            _faceRecognizer = new EigenFaceRecognizer(80, double.PositiveInfinity);
         }
 
         public Task<Result<IEnumerable<Face>>> ExtractFaces(byte[] image)
@@ -95,10 +95,12 @@ namespace FaceRecognizer.Core.Services
                     using (var imageFrame = img.ToImage<Bgr, byte>())
                     using (var grayFrame = imageFrame.Convert<Gray, byte>())
                     {
-                        var result = _faceRecognizer.Predict(grayFrame.Resize(100, 100, Inter.Cubic));
-
-                        if (result.Label <= 0)
+                        var result = _faceRecognizer.Predict(grayFrame.Resize(300, 300, Inter.Cubic));
+                        
+                        if (result.Label <= 0 || result.Distance >= 105)
+                        {
                             return Result.Fail<Person>("Face not recognized.");
+                        }
 
                         var person = await _faceRepository.FindPersonByIdAsync(result.Label);
 
@@ -134,7 +136,7 @@ namespace FaceRecognizer.Core.Services
                             using (var imageFrame = img.ToImage<Bgr, byte>())
                             using (var grayFrame = imageFrame.Convert<Gray, byte>())
                             {
-                                faceImages.Add(grayFrame.Resize(100, 100, Inter.Cubic));
+                                faceImages.Add(grayFrame.Resize(300, 300, Inter.Cubic));
                                 faceLabels.Add(person.Id);
                             }
                         }
