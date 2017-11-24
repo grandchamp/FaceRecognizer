@@ -1,7 +1,9 @@
 ﻿using FaceRecognizer.Bus.RabbitMQ;
 using FaceRecognizer.Core.Configuration;
+using FaceRecognizer.Core.Repositories.Contracts;
 using FaceRecognizer.Core.Services;
 using FaceRecognizer.Core.Services.Contracts;
+using FaceRecognizer.Data.Repositories;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Marten;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 
@@ -30,10 +33,11 @@ namespace FaceRecognizer.BusHandler
             services.Configure<EmguCVConfiguration>(Configuration.GetSection("EmguCV"));
 
             services.AddSingleton<RabbitConnection>();
-
             services.AddSingleton<RabbitListener>();
+
             services.AddScoped<IRabbitService, RabbitService>();
             services.AddScoped<IFaceService, FaceService>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
 
             services.AddScoped<IDocumentStore>(provider => DocumentStore.For(Configuration.GetSection("ConnectionStrings:Marten").GetValue<string>("FaceDB")));
             services.AddScoped(provider => provider.GetRequiredService<IDocumentStore>().OpenSession());
@@ -46,9 +50,12 @@ namespace FaceRecognizer.BusHandler
             app.UseHangfireServer();
             app.UseHangfireDashboard();
 
-            AssemblyLoadContext.Default.LoadFromAssemblyPath(@"C:\Users\nicolas.grandchamp\Source\Repos\FaceRecognizer2\src\FaceRecognizer.BusHandler\bin\Debug\netcoreapp2.0\Emgu.CV.World.NetStandard1_4.dll");
+            AssemblyLoadContext.Default.LoadFromAssemblyPath(FindFileInPath(env.ContentRootPath ?? env.WebRootPath));
 
             BackgroundJob.Enqueue(() => app.ApplicationServices.GetService<RabbitListener>().StartExtractFaces());
+            BackgroundJob.Enqueue(() => app.ApplicationServices.GetService<RabbitListener>().StartTrainFaceRecognition());
         }
+
+        private string FindFileInPath(string path) => Directory.GetFiles(path, "Emgu.CV.World.NetStandard1_4.dll", SearchOption.AllDirectories).FirstOrDefault();
     }
 }

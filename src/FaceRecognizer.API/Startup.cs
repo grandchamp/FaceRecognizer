@@ -1,4 +1,6 @@
 ﻿using FaceRecognizer.Bus.RabbitMQ;
+using FaceRecognizer.Core.Repositories.Contracts;
+using FaceRecognizer.Data.Repositories;
 using Marten;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +26,7 @@ namespace FaceRecognizer.API
 
             services.AddSingleton<RabbitConnection>();
             services.AddScoped<IRabbitService, RabbitService>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
 
             services.AddMediatR(typeof(Core.Commands.ExtractFacesCommand).GetTypeInfo().Assembly,
                                 typeof(Bus.RabbitMQ.Handlers.ExtractFacesCommandHandler).GetTypeInfo().Assembly);

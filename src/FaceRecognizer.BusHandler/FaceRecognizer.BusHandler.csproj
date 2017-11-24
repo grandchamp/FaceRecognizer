@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FaceRecognizer.Bus.RabbitMQ\FaceRecognizer.Bus.RabbitMQ.csproj" />
+    <ProjectReference Include="..\FaceRecognizer.Data\FaceRecognizer.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

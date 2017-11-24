@@ -56,10 +56,18 @@ namespace FaceRecognizer.API.Controllers
 
                 IActionResult response = NoContent();
 
-                extractedFaces.OnSuccess(x =>
+                await extractedFaces.OnSuccess(async x =>
                 {
                     if (x.Any())
-                        response = Json(x);
+                    {
+                        var matchedFaces = await _mediator.Send(new MatchFacesCommand { ExtractedFaces = x });
+
+                        var notMatchedFaces = matchedFaces.Where(y => y.Id == 0);
+                        foreach (var person in notMatchedFaces)
+                            await _mediator.Publish(new InsertPersonCommand { Person = person });
+
+                        response = Json(matchedFaces);
+                    }
                 });
 
                 return response;
